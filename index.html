@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Google Sheet Menu</title>
+  <style>
+    body { font-family: Arial; }
+    .menu { margin-bottom: 10px; }
+    .menu button {
+      margin-right: 5px;
+      padding: 8px 12px;
+      cursor: pointer;
+    }
+    table { border-collapse: collapse; width: 100%; }
+    td, th { border: 1px solid #ccc; padding: 6px; }
+  </style>
+</head>
+<body>
+  <h1>Google Sheet Menu</h1>
+  <div class="menu" id="menu"></div>
+  <div id="table-container"></div>
+
+  <script>
+    const API_URL = "https://script.google.com/macros/s/AKfycbzU0Cy6rnpRIYLBaUR-T722w25Q8NScvdqckww5Fy7givhzKCMeZpy9AFfzZBFpJe-p/exec";
+
+    fetch(API_URL)
+      .then(res => res.json())
+      .then(sheets => {
+        const menuDiv = document.getElementById("menu");
+        const container = document.getElementById("table-container");
+
+        sheets.forEach((sheet, index) => {
+          const btn = document.createElement("button");
+          btn.textContent = sheet.name;
+          btn.onclick = () => renderTable(sheet.values);
+          menuDiv.appendChild(btn);
+          if (index === 0) renderTable(sheet.values);
+        });
+
+        function renderTable(rows) {
+          let html = "<table>";
+          rows.forEach((row, i) => {
+            html += "<tr>";
+            row.forEach(cell => {
+              html += i === 0 ? `<th>${cell}</th>` : `<td>${cell}</td>`;
+            });
+            html += "</tr>";
+          });
+          html += "</table>";
+          container.innerHTML = html;
+        }
+      });
+  </script>
+</body>
+</html>
