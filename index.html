@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Data dari Google Sheets</title>
+</head>
+<body>
+<h1>Data dari Google Sheets</h1>
+<table id="data-table" border="1" cellpadding="5"></table>
+
+<script>
+async function loadData() {
+    const sheetUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRWNcVAMLyrEa0Ob0Lsm3LpKAJAlqD9G_Sx3JekjxrJfB7Y26uE5D0Q3lWOcGZWPvAIFtGK9v-SwXcg/pub?output=csv";
+    const response = await fetch(sheetUrl);
+    const csvText = await response.text();
+    const rows = csvText.split("\n").map(r => r.split(","));
+
+    let html = "";
+    rows.forEach(row => {
+        html += "<tr>" + row.map(cell => `<td>${cell}</td>`).join("") + "</tr>";
+    });
+    document.getElementById("data-table").innerHTML = html;
+}
+loadData();
+</script>
+</body>
+</html>
