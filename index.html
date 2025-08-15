@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trupp - Mode Grid</title>
+    <title>Trupp - Daftar Link</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -16,45 +16,52 @@
         body {
             background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
             min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            padding: 15px;
+            padding: 20px;
             color: #fff;
-            position: relative;
-            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
         }
         
         .header {
             text-align: center;
-            padding: 15px 0;
-            margin-bottom: 10px;
+            padding: 20px 0;
+            margin-bottom: 20px;
+            border-bottom: 2px solid rgba(253, 187, 45, 0.5);
         }
         
         .logo {
-            font-size: 2.8rem;
+            font-size: 3.5rem;
             font-weight: 800;
             background: linear-gradient(to right, #fdbb2d, #b21f1f);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 5px;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+        }
+        
+        .subtitle {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.85);
         }
         
         .action-buttons {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 10px;
-            margin-bottom: 15px;
+            margin-bottom: 25px;
         }
         
         .action-btn {
             background: rgba(0, 0, 0, 0.4);
             border: 1px solid rgba(253, 187, 45, 0.5);
             color: white;
-            padding: 10px 5px;
-            border-radius: 10px;
+            padding: 12px 5px;
+            border-radius: 8px;
             font-weight: 600;
             font-size: 0.9rem;
             cursor: pointer;
@@ -73,153 +80,107 @@
             font-size: 1.2rem;
         }
         
-        .grid-container {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
-            margin-bottom: 80px;
-            flex-grow: 1;
-        }
-        
-        .grid-item {
-            background: rgba(0, 0, 0, 0.5);
-            border-radius: 12px;
-            padding: 15px;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+        .link-list {
             display: flex;
             flex-direction: column;
-            position: relative;
-            overflow: hidden;
-            min-height: 110px;
+            gap: 15px;
         }
         
-        .grid-item:hover {
+        .link-item {
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+            padding: 15px;
+            transition: all 0.3s ease;
+            border-left: 4px solid #fdbb2d;
+        }
+        
+        .link-item:hover {
             background: rgba(0, 0, 0, 0.6);
-            transform: translateY(-3px);
+            transform: translateX(5px);
         }
         
-        .grid-icon {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            font-size: 1.5rem;
-            color: #fdbb2d;
-            opacity: 0.7;
-        }
-        
-        .grid-title {
-            font-size: 1rem;
+        .link-title {
+            font-size: 1.1rem;
             font-weight: 600;
             margin-bottom: 8px;
             color: #fdbb2d;
         }
         
-        .grid-url {
-            font-size: 0.75rem;
+        .link-url {
+            font-size: 0.85rem;
             color: #bbb;
             word-break: break-all;
-            flex-grow: 1;
+            margin-bottom: 12px;
         }
         
         .visit-btn {
             background: rgba(253, 187, 45, 0.2);
             color: white;
             border: none;
-            padding: 6px 12px;
-            border-radius: 15px;
-            font-size: 0.8rem;
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-size: 0.9rem;
             cursor: pointer;
             transition: all 0.3s ease;
             width: 100%;
-            margin-top: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 5px;
+            gap: 8px;
         }
         
         .visit-btn:hover {
             background: rgba(253, 187, 45, 0.4);
         }
         
-        .bottom-menu {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: rgba(0, 0, 0, 0.9);
-            border-top: 1px solid rgba(253, 187, 45, 0.5);
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            padding: 8px 0;
-            z-index: 100;
-            backdrop-filter: blur(5px);
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(253, 187, 45, 0.3);
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
         }
         
-        .menu-btn {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 3px;
-            color: #bbb;
-            text-decoration: none;
-            font-size: 0.75rem;
-            transition: all 0.3s ease;
-            padding: 5px 0;
-        }
-        
-        .menu-btn:hover, .menu-btn.active {
-            color: #fdbb2d;
-        }
-        
-        .menu-btn i {
-            font-size: 1.2rem;
-        }
-        
-        .notification-badge {
-            position: absolute;
-            top: 0;
-            right: 15px;
-            background: #ff4757;
-            color: white;
-            font-size: 0.6rem;
-            width: 18px;
-            height: 18px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        @media (min-width: 768px) {
-            .grid-container {
-                grid-template-columns: repeat(3, 1fr);
-                gap: 15px;
+        @media (max-width: 600px) {
+            .logo {
+                font-size: 2.8rem;
             }
             
             .action-buttons {
-                grid-template-columns: repeat(4, 1fr);
-                max-width: 600px;
-                margin: 0 auto 20px;
+                grid-template-columns: repeat(2, 1fr);
             }
             
             .action-btn {
-                padding: 12px 5px;
-                font-size: 1rem;
+                padding: 10px 5px;
             }
         }
         
-        @media (min-width: 1024px) {
-            .grid-container {
-                grid-template-columns: repeat(4, 1fr);
+        @media (max-width: 400px) {
+            .logo {
+                font-size: 2.2rem;
+            }
+            
+            .action-buttons {
+                grid-template-columns: 1fr;
+            }
+            
+            .link-title {
+                font-size: 1rem;
+            }
+            
+            .link-url {
+                font-size: 0.8rem;
             }
         }
     </style>
 </head>
 <body>
-    <div class="header">
-        <div class="logo">Trupp</div>
+    <div class="container">
+        <div class="header">
+            <div class="logo">Trupp</div>
+            <div class="subtitle">Daftar Link Penting</div>
+        </div>
         
         <div class="action-buttons">
             <button class="action-btn">
@@ -239,165 +200,124 @@
                 <span>AIR</span>
             </button>
         </div>
-    </div>
-    
-    <div class="grid-container">
-        <!-- Link 1 -->
-        <div class="grid-item">
-            <i class="grid-icon fab fa-ethereum"></i>
-            <div class="grid-title">Monadscore</div>
-            <div class="grid-url">dashboard.monadscore.xyz</div>
-            <a href="https://dashboard.monadscore.xyz/" target="_blank" class="visit-btn">
-                <i class="fas fa-external-link-alt"></i> Buka
-            </a>
+        
+        <div class="link-list">
+            <!-- Link 1 -->
+            <div class="link-item">
+                <div class="link-title">Monadscore Dashboard</div>
+                <div class="link-url">https://dashboard.monadscore.xyz/</div>
+                <a href="https://dashboard.monadscore.xyz/" target="_blank" class="visit-btn">
+                    <i class="fas fa-external-link-alt"></i> Buka Link
+                </a>
+            </div>
+            
+            <!-- Link 2 -->
+            <div class="link-item">
+                <div class="link-title">Nebulai Network</div>
+                <div class="link-url">https://nebulai.network/opencompute</div>
+                <a href="https://nebulai.network/opencompute" target="_blank" class="visit-btn">
+                    <i class="fas fa-external-link-alt"></i> Buka Link
+                </a>
+            </div>
+            
+            <!-- Link 3 -->
+            <div class="link-item">
+                <div class="link-title">PRDT Finance Mining</div>
+                <div class="link-url">https://prdt.finance/mining</div>
+                <a href="https://prdt.finance/mining" target="_blank" class="visit-btn">
+                    <i class="fas fa-external-link-alt"></i> Buka Link
+                </a>
+            </div>
+            
+            <!-- Link 4 -->
+            <div class="link-item">
+                <div class="link-title">Somnia Network Quest</div>
+                <div class="link-url">https://quest.somnia.network/</div>
+                <a href="https://quest.somnia.network/" target="_blank" class="visit-btn">
+                    <i class="fas fa-external-link-alt"></i> Buka Link
+                </a>
+            </div>
+            
+            <!-- Link 5 -->
+            <div class="link-item">
+                <div class="link-title">Signals Art Claim</div>
+                <div class="link-url">https://signals.art/claim</div>
+                <a href="https://signals.art/claim" target="_blank" class="visit-btn">
+                    <i class="fas fa-external-link-alt"></i> Buka Link
+                </a>
+            </div>
+            
+            <!-- Link 6 -->
+            <div class="link-item">
+                <div class="link-title">Unich Airdrop</div>
+                <div class="link-url">https://unich.com/en/airdrop</div>
+                <a href="https://unich.com/en/airdrop" target="_blank" class="visit-btn">
+                    <i class="fas fa-external-link-alt"></i> Buka Link
+                </a>
+            </div>
+            
+            <!-- Link 7 -->
+            <div class="link-item">
+                <div class="link-title">Kaleido Finance Mining</div>
+                <div class="link-url">https://launchpad.kaleidofinance.xyz/premium-mining</div>
+                <a href="https://launchpad.kaleidofinance.xyz/premium-mining" target="_blank" class="visit-btn">
+                    <i class="fas fa-external-link-alt"></i> Buka Link
+                </a>
+            </div>
+            
+            <!-- Link 8 -->
+            <div class="link-item">
+                <div class="link-title">3DOS Dashboard</div>
+                <div class="link-url">https://dashboard.3dos.io/login</div>
+                <a href="https://dashboard.3dos.io/login" target="_blank" class="visit-btn">
+                    <i class="fas fa-external-link-alt"></i> Buka Link
+                </a>
+            </div>
+            
+            <!-- Link 9 -->
+            <div class="link-item">
+                <div class="link-title">Billions Network Signup</div>
+                <div class="link-url">https://signup.billions.network/</div>
+                <a href="https://signup.billions.network/" target="_blank" class="visit-btn">
+                    <i class="fas fa-external-link-alt"></i> Buka Link
+                </a>
+            </div>
+            
+            <!-- Link 10 -->
+            <div class="link-item">
+                <div class="link-title">Korportocol Quests</div>
+                <div class="link-url">https://quests.korportocol.io/quests</div>
+                <a href="https://quests.korportocol.io/quests" target="_blank" class="visit-btn">
+                    <i class="fas fa-external-link-alt"></i> Buka Link
+                </a>
+            </div>
+            
+            <!-- Link 11 -->
+            <div class="link-item">
+                <div class="link-title">Hanafuda Hana Network</div>
+                <div class="link-url">https://hanafuda.hana.network/deposit</div>
+                <a href="https://hanafuda.hana.network/deposit" target="_blank" class="visit-btn">
+                    <i class="fas fa-external-link-alt"></i> Buka Link
+                </a>
+            </div>
+            
+            <!-- Link 12 -->
+            <div class="link-item">
+                <div class="link-title">Goblin Meme Box</div>
+                <div class="link-url">https://www.goblin.meme/box/6856701d223b22873ed1d730</div>
+                <a href="https://www.goblin.meme/box/6856701d223b22873ed1d730" target="_blank" class="visit-btn">
+                    <i class="fas fa-external-link-alt"></i> Buka Link
+                </a>
+            </div>
         </div>
         
-        <!-- Link 2 -->
-        <div class="grid-item">
-            <i class="grid-icon fas fa-network-wired"></i>
-            <div class="grid-title">Nebulai</div>
-            <div class="grid-url">nebulai.network/opencompute</div>
-            <a href="https://nebulai.network/opencompute" target="_blank" class="visit-btn">
-                <i class="fas fa-external-link-alt"></i> Buka
-            </a>
+        <div class="footer">
+            <p>&copy; 2023 Trupp - Daftar Link Sederhana</p>
+            <p>Tidak ada gambar, tidak ada menu, hanya daftar link</p>
         </div>
-        
-        <!-- Link 3 -->
-        <div class="grid-item">
-            <i class="grid-icon fas fa-digging"></i>
-            <div class="grid-title">PRDT Mining</div>
-            <div class="grid-url">prdt.finance/mining</div>
-            <a href="https://prdt.finance/mining" target="_blank" class="visit-btn">
-                <i class="fas fa-external-link-alt"></i> Buka
-            </a>
-        </div>
-        
-        <!-- Link 4 -->
-        <div class="grid-item">
-            <i class="grid-icon fas fa-tasks"></i>
-            <div class="grid-title">Somnia Quest</div>
-            <div class="grid-url">quest.somnia.network</div>
-            <a href="https://quest.somnia.network/" target="_blank" class="visit-btn">
-                <i class="fas fa-external-link-alt"></i> Buka
-            </a>
-        </div>
-        
-        <!-- Link 5 -->
-        <div class="grid-item">
-            <i class="grid-icon fas fa-paint-brush"></i>
-            <div class="grid-title">Signals Art</div>
-            <div class="grid-url">signals.art/claim</div>
-            <a href="https://signals.art/claim" target="_blank" class="visit-btn">
-                <i class="fas fa-external-link-alt"></i> Buka
-            </a>
-        </div>
-        
-        <!-- Link 6 -->
-        <div class="grid-item">
-            <i class="grid-icon fas fa-gift"></i>
-            <div class="grid-title">Unich Airdrop</div>
-            <div class="grid-url">unich.com/en/airdrop</div>
-            <a href="https://unich.com/en/airdrop" target="_blank" class="visit-btn">
-                <i class="fas fa-external-link-alt"></i> Buka
-            </a>
-        </div>
-        
-        <!-- Link 7 -->
-        <div class="grid-item">
-            <i class="grid-icon fas fa-rocket"></i>
-            <div class="grid-title">Kaleido Mining</div>
-            <div class="grid-url">launchpad.kaleidofinance.xyz/premium-mining</div>
-            <a href="https://launchpad.kaleidofinance.xyz/premium-mining" target="_blank" class="visit-btn">
-                <i class="fas fa-external-link-alt"></i> Buka
-            </a>
-        </div>
-        
-        <!-- Link 8 -->
-        <div class="grid-item">
-            <i class="grid-icon fas fa-cube"></i>
-            <div class="grid-title">3DOS Dashboard</div>
-            <div class="grid-url">dashboard.3dos.io/login</div>
-            <a href="https://dashboard.3dos.io/login" target="_blank" class="visit-btn">
-                <i class="fas fa-external-link-alt"></i> Buka
-            </a>
-        </div>
-        
-        <!-- Link 9 -->
-        <div class="grid-item">
-            <i class="grid-icon fas fa-sign-in-alt"></i>
-            <div class="grid-title">Billions Signup</div>
-            <div class="grid-url">signup.billions.network</div>
-            <a href="https://signup.billions.network/" target="_blank" class="visit-btn">
-                <i class="fas fa-external-link-alt"></i> Buka
-            </a>
-        </div>
-        
-        <!-- Link 10 -->
-        <div class="grid-item">
-            <i class="grid-icon fas fa-quest"></i>
-            <div class="grid-title">Korportocol</div>
-            <div class="grid-url">quests.korportocol.io/quests</div>
-            <a href="https://quests.korportocol.io/quests" target="_blank" class="visit-btn">
-                <i class="fas fa-external-link-alt"></i> Buka
-            </a>
-        </div>
-        
-        <!-- Link 11 -->
-        <div class="grid-item">
-            <i class="grid-icon fas fa-tree"></i>
-            <div class="grid-title">Hanafuda</div>
-            <div class="grid-url">hanafuda.hana.network/deposit</div>
-            <a href="https://hanafuda.hana.network/deposit" target="_blank" class="visit-btn">
-                <i class="fas fa-external-link-alt"></i> Buka
-            </a>
-        </div>
-        
-        <!-- Link 12 -->
-        <div class="grid-item">
-            <i class="grid-icon fas fa-box-open"></i>
-            <div class="grid-title">Goblin Meme</div>
-            <div class="grid-url">goblin.meme/box/6856701d223b22873ed1d730</div>
-            <a href="https://www.goblin.meme/box/6856701d223b22873ed1d730" target="_blank" class="visit-btn">
-                <i class="fas fa-external-link-alt"></i> Buka
-            </a>
-        </div>
-    </div>
-    
-    <!-- Bottom Menu -->
-    <div class="bottom-menu">
-        <a href="#" class="menu-btn active">
-            <i class="fas fa-home"></i>
-            <span>Home</span>
-        </a>
-        <a href="#" class="menu-btn">
-            <i class="fas fa-search"></i>
-            <span>Cari</span>
-            <span class="notification-badge">3</span>
-        </a>
-        <a href="#" class="menu-btn">
-            <i class="fas fa-plus-circle"></i>
-            <span>Tambah</span>
-        </a>
-        <a href="#" class="menu-btn">
-            <i class="fas fa-user"></i>
-            <span>Akun</span>
-        </a>
-        <a href="#" class="menu-btn">
-            <i class="fas fa-cog"></i>
-            <span>Setelan</span>
-        </a>
     </div>
 
     <script>
-        // Animasi tombol menu
-        const menuButtons = document.querySelectorAll('.menu-btn');
-        menuButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                menuButtons.forEach(btn => btn.classList.remove('active'));
-                this.classList.add('active');
-            });
-        });
-        
         // Animasi tombol aksi
         const actionButtons = document.querySelectorAll('.action-btn');
         actionButtons.forEach(button => {
@@ -409,9 +329,9 @@
             });
         });
         
-        // Animasi grid item
-        const gridItems = document.querySelectorAll('.grid-item');
-        gridItems.forEach(item => {
+        // Animasi item link
+        const linkItems = document.querySelectorAll('.link-item');
+        linkItems.forEach(item => {
             item.addEventListener('click', function(e) {
                 if (!e.target.classList.contains('visit-btn')) {
                     this.style.transform = 'scale(0.98)';
