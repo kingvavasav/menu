@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#1a2a6c">
-    <title>Trupp - URL Management</title>
+    <title>Trupp - Link Dashboard</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -19,49 +18,20 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            align-items: center;
             padding: 15px;
             color: #fff;
-            -webkit-tap-highlight-color: transparent;
-        }
-        
-        .container {
-            max-width: 1200px;
-            width: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            border-radius: 20px;
-            padding: 25px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
-            margin-top: 15px;
             position: relative;
-            overflow: hidden;
+            overflow-x: hidden;
         }
         
-        .chrome-indicator {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            padding: 8px 15px;
-            font-size: 0.85rem;
-            color: #fdbb2d;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 0;
-            border-bottom: 2px solid #fdbb2d;
-            margin-bottom: 30px;
+        .header {
+            text-align: center;
+            padding: 20px 0;
+            margin-bottom: 15px;
         }
         
         .logo {
-            font-size: 3rem;
+            font-size: 3.5rem;
             font-weight: 800;
             background: linear-gradient(to right, #fdbb2d, #b21f1f);
             -webkit-background-clip: text;
@@ -69,470 +39,399 @@
             color: transparent;
             text-transform: uppercase;
             letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: 20px;
+        }
+        
+        .action-buttons {
             display: flex;
-            align-items: center;
-            gap: 10px;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
         }
         
-        .logo i {
-            font-size: 2.5rem;
-        }
-        
-        .nav-toggle {
-            display: none;
-            background: none;
-            border: none;
-            color: #fdbb2d;
-            font-size: 1.8rem;
-            cursor: pointer;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            transition: background 0.3s;
-        }
-        
-        .nav-toggle:hover {
-            background: rgba(253, 187, 45, 0.2);
-        }
-        
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 25px;
-        }
-        
-        nav a {
-            text-decoration: none;
-            color: #fff;
-            font-size: 1.1rem;
-            font-weight: 600;
-            padding: 10px 15px;
+        .action-btn {
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(253, 187, 45, 0.5);
+            color: white;
+            padding: 10px 20px;
             border-radius: 30px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
             transition: all 0.3s ease;
             display: flex;
             align-items: center;
             gap: 8px;
         }
         
-        nav a:hover, nav a.active {
-            background: #fdbb2d;
-            color: #1a2a6c;
+        .action-btn:hover {
+            background: rgba(253, 187, 45, 0.3);
+            transform: translateY(-3px);
         }
         
         .main-content {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-            margin-bottom: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 15px;
+            margin-bottom: 80px;
+            flex-grow: 1;
         }
         
-        .url-card {
-            background: rgba(255, 255, 255, 0.1);
+        .link-card {
+            background: rgba(0, 0, 0, 0.4);
             border-radius: 15px;
-            padding: 22px;
-            text-align: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: 1px solid rgba(253, 187, 45, 0.3);
+            padding: 20px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
             display: flex;
             flex-direction: column;
-            align-items: center;
-            cursor: pointer;
             position: relative;
             overflow: hidden;
         }
         
-        .url-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
-            background: rgba(255, 255, 255, 0.15);
+        .link-card:hover {
+            transform: translateY(-5px);
+            background: rgba(0, 0, 0, 0.6);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         }
         
-        .url-card::before {
+        .link-card::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 5px;
-            background: linear-gradient(to right, #1a2a6c, #b21f1f, #fdbb2d);
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(to bottom, #1a2a6c, #b21f1f, #fdbb2d);
         }
         
-        .url-card h3 {
-            font-size: 1.7rem;
+        .link-icon {
+            font-size: 1.8rem;
             margin-bottom: 15px;
             color: #fdbb2d;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
         }
         
-        .url-card p {
-            font-size: 1rem;
-            line-height: 1.5;
-            color: #ddd;
-            flex-grow: 1;
-        }
-        
-        .url-card .icon {
-            font-size: 2.8rem;
-            margin-bottom: 18px;
+        .link-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 8px;
             color: #fdbb2d;
-            background: rgba(0, 0, 0, 0.3);
-            width: 80px;
-            height: 80px;
+        }
+        
+        .link-url {
+            font-size: 0.9rem;
+            color: #bbb;
+            margin-bottom: 15px;
+            word-break: break-all;
+        }
+        
+        .visit-btn {
+            background: rgba(253, 187, 45, 0.2);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: fit-content;
             display: flex;
             align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            border: 2px solid #fdbb2d;
+            gap: 5px;
         }
         
-        .mobile-section {
-            background: rgba(253, 187, 45, 0.15);
-            padding: 20px;
-            border-radius: 15px;
-            margin-top: 25px;
-            text-align: center;
-            border-left: 5px solid #fdbb2d;
+        .visit-btn:hover {
+            background: rgba(253, 187, 45, 0.4);
+        }
+        
+        .bottom-menu {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.9);
+            border-top: 1px solid rgba(253, 187, 45, 0.5);
             display: flex;
-            flex-direction: column;
-            gap: 15px;
+            justify-content: space-around;
+            padding: 12px 0;
+            z-index: 100;
+            backdrop-filter: blur(5px);
         }
         
-        .mobile-section h2 {
-            color: #fdbb2d;
-            font-size: 1.7rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-        }
-        
-        .mobile-section p {
-            font-size: 1.05rem;
-            line-height: 1.6;
-        }
-        
-        .mobile-features {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 15px;
-            margin-top: 10px;
-        }
-        
-        .feature {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-            padding: 12px;
-            min-width: 140px;
+        .menu-btn {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 8px;
+            gap: 5px;
+            color: #bbb;
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+            padding: 5px 15px;
+            border-radius: 20px;
         }
         
-        .feature i {
+        .menu-btn:hover, .menu-btn.active {
             color: #fdbb2d;
-            font-size: 1.5rem;
+            background: rgba(253, 187, 45, 0.1);
         }
         
-        footer {
-            margin-top: 30px;
-            text-align: center;
-            padding-top: 20px;
-            border-top: 1px solid rgba(253, 187, 45, 0.3);
-            color: #aaa;
-            font-size: 1rem;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-        
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-top: 10px;
-        }
-        
-        .social-links a {
-            color: #fdbb2d;
+        .menu-btn i {
             font-size: 1.4rem;
-            transition: transform 0.3s;
         }
         
-        .social-links a:hover {
-            transform: translateY(-5px);
-        }
-        
-        /* Responsif untuk perangkat seluler */
         @media (max-width: 768px) {
-            .container {
-                padding: 18px;
-                border-radius: 15px;
-            }
-            
             .logo {
-                font-size: 2.2rem;
-            }
-            
-            .logo i {
-                font-size: 2rem;
-            }
-            
-            .nav-toggle {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-            }
-            
-            nav ul {
-                display: none;
-                flex-direction: column;
-                position: absolute;
-                top: 90px;
-                left: 20px;
-                right: 20px;
-                background: rgba(0, 0, 0, 0.95);
-                padding: 20px;
-                border-radius: 15px;
-                z-index: 1000;
-                box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
-                gap: 10px;
-            }
-            
-            nav ul.active {
-                display: flex;
-            }
-            
-            nav a {
-                justify-content: center;
-                padding: 12px;
+                font-size: 2.8rem;
             }
             
             .main-content {
-                grid-template-columns: 1fr;
-                gap: 18px;
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             }
             
-            .url-card {
-                padding: 20px 15px;
-            }
-            
-            .mobile-section h2 {
-                font-size: 1.5rem;
-            }
-            
-            .mobile-section p {
-                font-size: 1rem;
+            .action-btn {
+                padding: 8px 15px;
+                font-size: 0.9rem;
             }
         }
         
         @media (max-width: 480px) {
             .logo {
-                font-size: 1.8rem;
-            }
-            
-            .chrome-indicator {
-                font-size: 0.75rem;
-                padding: 6px 12px;
-            }
-            
-            .url-card h3 {
-                font-size: 1.5rem;
-            }
-            
-            .url-card .icon {
                 font-size: 2.2rem;
-                width: 70px;
-                height: 70px;
             }
             
-            .feature {
-                min-width: 120px;
-                padding: 10px;
+            .main-content {
+                grid-template-columns: 1fr;
             }
-        }
-        
-        /* Animasi untuk Chrome Mobile */
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
-        
-        .url-card:hover {
-            animation: pulse 1s ease;
-        }
-        
-        /* Perbaikan untuk Chrome Mobile */
-        body {
-            -webkit-overflow-scrolling: touch;
-        }
-        
-        a, button {
-            touch-action: manipulation;
+            
+            .action-buttons {
+                gap: 10px;
+            }
+            
+            .action-btn {
+                padding: 8px 12px;
+                font-size: 0.85rem;
+            }
+            
+            .menu-btn {
+                padding: 5px 10px;
+                font-size: 0.75rem;
+            }
+            
+            .menu-btn i {
+                font-size: 1.2rem;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="chrome-indicator">
-            <i class="fab fa-chrome"></i>
-            <span>Optimized for Chrome Mobile</span>
-        </div>
+    <div class="header">
+        <div class="logo">Trupp</div>
+        <div class="subtitle">Kumpulan Link Penting</div>
         
-        <header>
-            <div class="logo">
-                <i class="fas fa-link"></i>
-                <span>Trupp</span>
-            </div>
-            <button class="nav-toggle" id="navToggle">
-                <i class="fas fa-bars"></i>
+        <div class="action-buttons">
+            <button class="action-btn">
+                <i class="fas fa-user-clock"></i> LOGIN JAM
             </button>
-            <nav>
-                <ul id="navMenu">
-                    <li><a href="#" class="active"><i class="fas fa-home"></i> Beranda</a></li>
-                    <li><a href="#"><i class="fas fa-globe"></i> Layanan</a></li>
-                    <li><a href="#"><i class="fas fa-chart-bar"></i> Analitik</a></li>
-                    <li><a href="#"><i class="fas fa-cog"></i> Pengaturan</a></li>
-                    <li><a href="#"><i class="fas fa-user"></i> Akun</a></li>
-                </ul>
-            </nav>
-        </header>
-        
-        <div class="main-content">
-            <div class="url-card">
-                <div class="icon">
-                    <i class="fas fa-bolt"></i>
-                </div>
-                <h3>UNTUK URL</h3>
-                <p>Perpendek URL dengan kinerja tinggi untuk akses lebih cepat dan efisien di perangkat seluler</p>
-            </div>
-            
-            <div class="url-card">
-                <div class="icon">
-                    <i class="fas fa-shield-alt"></i>
-                </div>
-                <h3>UNTUK URL</h3>
-                <p>Keamanan tingkat tinggi untuk semua tautan Anda dengan proteksi anti-phishing</p>
-            </div>
-            
-            <div class="url-card">
-                <div class="icon">
-                    <i class="fas fa-chart-line"></i>
-                </div>
-                <h3>UNTUK URL</h3>
-                <p>Analitik real-time untuk melacak kinerja tautan di berbagai perangkat</p>
-            </div>
-            
-            <div class="url-card">
-                <div class="icon">
-                    <i class="fas fa-qrcode"></i>
-                </div>
-                <h3>UNTUK URL</h3>
-                <p>Generator QR Code untuk berbagi tautan dengan mudah di platform seluler</p>
-            </div>
-            
-            <div class="url-card">
-                <div class="icon">
-                    <i class="fas fa-users"></i>
-                </div>
-                <h3>UNTUK URL</h3>
-                <p>Manajemen tim untuk kolaborasi pengelolaan tautan secara bersama</p>
-            </div>
-            
-            <div class="url-card">
-                <div class="icon">
-                    <i class="fas fa-sync-alt"></i>
-                </div>
-                <h3>UNTUK URL</h3>
-                <p>Sinkronisasi otomatis di semua perangkat dengan akses real-time</p>
-            </div>
+            <button class="action-btn">
+                <i class="fas fa-calendar-day"></i> DAILY LOGIN
+            </button>
+            <button class="action-btn">
+                <i class="fas fa-exchange-alt"></i> DAILY SWAP
+            </button>
+            <button class="action-btn">
+                <i class="fas fa-wind"></i> AIR
+            </button>
+        </div>
+    </div>
+    
+    <div class="main-content">
+        <!-- Link 1 -->
+        <div class="link-card">
+            <div class="link-icon"><i class="fab fa-ethereum"></i></div>
+            <div class="link-title">Monadscore Dashboard</div>
+            <div class="link-url">https://dashboard.monadscore.xyz/</div>
+            <a href="https://dashboard.monadscore.xyz/" target="_blank" class="visit-btn">
+                <i class="fas fa-external-link-alt"></i> Kunjungi
+            </a>
         </div>
         
-        <div class="mobile-section">
-            <h2>
-                <i class="fas fa-mobile-alt"></i>
-                Pengalaman Mobile Chrome yang Optimal
-            </h2>
-            <p>Website ini telah dioptimalkan khusus untuk performa terbaik di browser Chrome Mobile dengan menu navigasi yang mudah diakses.</p>
-            
-            <div class="mobile-features">
-                <div class="feature">
-                    <i class="fas fa-tachometer-alt"></i>
-                    <span>Performa Tinggi</span>
-                </div>
-                <div class="feature">
-                    <i class="fas fa-fingerprint"></i>
-                    <span>Touch-friendly</span>
-                </div>
-                <div class="feature">
-                    <i class="fas fa-battery-full"></i>
-                    <span>Rendah Baterai</span>
-                </div>
-                <div class="feature">
-                    <i class="fas fa-compress-arrows-alt"></i>
-                    <span>Responsif</span>
-                </div>
-            </div>
+        <!-- Link 2 -->
+        <div class="link-card">
+            <div class="link-icon"><i class="fas fa-network-wired"></i></div>
+            <div class="link-title">Nebulai Network</div>
+            <div class="link-url">https://nebulai.network/opencompute</div>
+            <a href="https://nebulai.network/opencompute" target="_blank" class="visit-btn">
+                <i class="fas fa-external-link-alt"></i> Kunjungi
+            </a>
         </div>
         
-        <footer>
-            <p>&copy; 2023 Trupp. Solusi Manajemen URL Modern</p>
-            <p>Didesain khusus untuk performa optimal di Chrome Mobile</p>
-            <div class="social-links">
-                <a href="#"><i class="fab fa-chrome"></i></a>
-                <a href="#"><i class="fab fa-android"></i></a>
-                <a href="#"><i class="fab fa-apple"></i></a>
-                <a href="#"><i class="fab fa-github"></i></a>
-            </div>
-        </footer>
+        <!-- Link 3 -->
+        <div class="link-card">
+            <div class="link-icon"><i class="fas fa-digging"></i></div>
+            <div class="link-title">PRDT Finance Mining</div>
+            <div class="link-url">https://prdt.finance/mining</div>
+            <a href="https://prdt.finance/mining" target="_blank" class="visit-btn">
+                <i class="fas fa-external-link-alt"></i> Kunjungi
+            </a>
+        </div>
+        
+        <!-- Link 4 -->
+        <div class="link-card">
+            <div class="link-icon"><i class="fas fa-tasks"></i></div>
+            <div class="link-title">Somnia Network Quest</div>
+            <div class="link-url">https://quest.somnia.network/</div>
+            <a href="https://quest.somnia.network/" target="_blank" class="visit-btn">
+                <i class="fas fa-external-link-alt"></i> Kunjungi
+            </a>
+        </div>
+        
+        <!-- Link 5 -->
+        <div class="link-card">
+            <div class="link-icon"><i class="fas fa-paint-brush"></i></div>
+            <div class="link-title">Signals Art Claim</div>
+            <div class="link-url">https://signals.art/claim</div>
+            <a href="https://signals.art/claim" target="_blank" class="visit-btn">
+                <i class="fas fa-external-link-alt"></i> Kunjungi
+            </a>
+        </div>
+        
+        <!-- Link 6 -->
+        <div class="link-card">
+            <div class="link-icon"><i class="fas fa-gift"></i></div>
+            <div class="link-title">Unich Airdrop</div>
+            <div class="link-url">https://unich.com/en/airdrop</div>
+            <a href="https://unich.com/en/airdrop" target="_blank" class="visit-btn">
+                <i class="fas fa-external-link-alt"></i> Kunjungi
+            </a>
+        </div>
+        
+        <!-- Link 7 -->
+        <div class="link-card">
+            <div class="link-icon"><i class="fas fa-rocket"></i></div>
+            <div class="link-title">Kaleido Finance Premium Mining</div>
+            <div class="link-url">https://launchpad.kaleidofinance.xyz/premium-mining</div>
+            <a href="https://launchpad.kaleidofinance.xyz/premium-mining" target="_blank" class="visit-btn">
+                <i class="fas fa-external-link-alt"></i> Kunjungi
+            </a>
+        </div>
+        
+        <!-- Link 8 -->
+        <div class="link-card">
+            <div class="link-icon"><i class="fas fa-cube"></i></div>
+            <div class="link-title">3DOS Dashboard</div>
+            <div class="link-url">https://dashboard.3dos.io/login</div>
+            <a href="https://dashboard.3dos.io/login" target="_blank" class="visit-btn">
+                <i class="fas fa-external-link-alt"></i> Kunjungi
+            </a>
+        </div>
+        
+        <!-- Link 9 -->
+        <div class="link-card">
+            <div class="link-icon"><i class="fas fa-sign-in-alt"></i></div>
+            <div class="link-title">Billions Network Signup</div>
+            <div class="link-url">https://signup.billions.network/</div>
+            <a href="https://signup.billions.network/" target="_blank" class="visit-btn">
+                <i class="fas fa-external-link-alt"></i> Kunjungi
+            </a>
+        </div>
+        
+        <!-- Link 10 -->
+        <div class="link-card">
+            <div class="link-icon"><i class="fas fa-quest"></i></div>
+            <div class="link-title">Korportocol Quests</div>
+            <div class="link-url">https://quests.korportocol.io/quests</div>
+            <a href="https://quests.korportocol.io/quests" target="_blank" class="visit-btn">
+                <i class="fas fa-external-link-alt"></i> Kunjungi
+            </a>
+        </div>
+        
+        <!-- Link 11 -->
+        <div class="link-card">
+            <div class="link-icon"><i class="fas fa-tree"></i></div>
+            <div class="link-title">Hanafuda Hana Network</div>
+            <div class="link-url">https://hanafuda.hana.network/deposit</div>
+            <a href="https://hanafuda.hana.network/deposit" target="_blank" class="visit-btn">
+                <i class="fas fa-external-link-alt"></i> Kunjungi
+            </a>
+        </div>
+        
+        <!-- Link 12 -->
+        <div class="link-card">
+            <div class="link-icon"><i class="fas fa-box-open"></i></div>
+            <div class="link-title">Goblin Meme Box</div>
+            <div class="link-url">https://www.goblin.meme/box/6856701d223b22873ed1d730</div>
+            <a href="https://www.goblin.meme/box/6856701d223b22873ed1d730" target="_blank" class="visit-btn">
+                <i class="fas fa-external-link-alt"></i> Kunjungi
+            </a>
+        </div>
+    </div>
+    
+    <!-- Bottom Menu -->
+    <div class="bottom-menu">
+        <a href="#" class="menu-btn active">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </a>
+        <a href="#" class="menu-btn">
+            <i class="fas fa-search"></i>
+            <span>Cari</span>
+        </a>
+        <a href="#" class="menu-btn">
+            <i class="fas fa-plus-circle"></i>
+            <span>Tambah</span>
+        </a>
+        <a href="#" class="menu-btn">
+            <i class="fas fa-user"></i>
+            <span>Akun</span>
+        </a>
+        <a href="#" class="menu-btn">
+            <i class="fas fa-cog"></i>
+            <span>Pengaturan</span>
+        </a>
     </div>
 
     <script>
-        // Toggle menu navigasi untuk perangkat seluler
-        const navToggle = document.getElementById('navToggle');
-        const navMenu = document.getElementById('navMenu');
-        
-        navToggle.addEventListener('click', function() {
-            navMenu.classList.toggle('active');
-            const icon = navToggle.querySelector('i');
-            if (navMenu.classList.contains('active')) {
-                icon.classList.replace('fa-bars', 'fa-times');
-            } else {
-                icon.classList.replace('fa-times', 'fa-bars');
-            }
-        });
-        
-        // Menutup menu saat mengklik di luar menu
-        document.addEventListener('click', function(event) {
-            if (window.innerWidth <= 768 && 
-                !navMenu.contains(event.target) && 
-                !navToggle.contains(event.target) &&
-                navMenu.classList.contains('active')) {
-                navMenu.classList.remove('active');
-                const icon = navToggle.querySelector('i');
-                icon.classList.replace('fa-times', 'fa-bars');
-            }
-        });
-        
-        // Menambahkan efek sentuh untuk kartu di mobile
-        const urlCards = document.querySelectorAll('.url-card');
-        urlCards.forEach(card => {
-            card.addEventListener('touchstart', function() {
-                this.classList.add('touched');
+        // Tambahkan efek hover pada kartu
+        const cards = document.querySelectorAll('.link-card');
+        cards.forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-5px)';
+                card.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.3)';
             });
             
-            card.addEventListener('touchend', function() {
-                this.classList.remove('touched');
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = '';
+                card.style.boxShadow = '';
             });
         });
         
-        // Deteksi Chrome Mobile
-        const isChromeMobile = /Chrome/.test(navigator.userAgent) && /Mobile/.test(navigator.userAgent);
-        if (isChromeMobile) {
-            document.body.classList.add('chrome-mobile');
-        }
+        // Animasi tombol menu
+        const menuButtons = document.querySelectorAll('.menu-btn');
+        menuButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                menuButtons.forEach(btn => btn.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+        
+        // Animasi tombol aksi
+        const actionButtons = document.querySelectorAll('.action-btn');
+        actionButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                this.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 200);
+            });
+        });
     </script>
 </body>
 </html>
