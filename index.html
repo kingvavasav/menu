@@ -7,12 +7,23 @@
 <style>
 body { background:#000; color:#fff; margin:0; font-family:sans-serif; }
 a { color:#4da3ff; display:block; margin:6px 0; word-break:break-all; }
-.menu { position:fixed; bottom:0; left:0; width:100%; background:#111; display:flex; }
-.menu button { flex:1; padding:10px; background:#222; color:#fff; border:none; }
+.menu {
+    position:fixed; bottom:0; left:0; width:100%;
+    background:#111; display:flex;
+    overflow-x:auto; white-space:nowrap;
+}
+.menu button {
+    flex:0 0 auto; padding:10px 12px;
+    background:#222; color:#fff;
+    border:none; margin:2px;
+    font-size:14px; border-radius:4px;
+}
+.menu::-webkit-scrollbar { display:none; } /* sembunyikan scrollbar di mobile */
 </style>
 </head>
 <body>
 
+<!-- Link List -->
 <a href="https://dashboard.monadscore.xyz/" target="_blank" rel="noopener noreferrer">https://dashboard.monadscore.xyz/</a>
 <a href="https://nebulai.network/opencompute" target="_blank" rel="noopener noreferrer">https://nebulai.network/opencompute</a>
 <a href="https://prdt.finance/mining" target="_blank" rel="noopener noreferrer">https://prdt.finance/mining</a>
@@ -26,10 +37,17 @@ a { color:#4da3ff; display:block; margin:6px 0; word-break:break-all; }
 <a href="https://hanafuda.hana.network/deposit" target="_blank" rel="noopener noreferrer">https://hanafuda.hana.network/deposit</a>
 <a href="https://www.goblin.meme/box/6856701d223b22873ed1d730" target="_blank" rel="noopener noreferrer">https://www.goblin.meme/box/6856701d223b22873ed1d730</a>
 
+<!-- Scrollable Menu -->
 <div class="menu">
-    <button>Home</button>
-    <button>Menu</button>
-    <button>Info</button>
+    <button>LOGIN JAM</button>
+    <button>DAILY LOGIN</button>
+    <button>DAILY SWAP</button>
+    <button>monad1</button>
+    <button>monad2</button>
+    <button>AIR</button>
+    <button>monad nft</button>
+    <button>brige</button>
+    <button>jarang</button>
 </div>
 
 </body>
