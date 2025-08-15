@@ -9,16 +9,19 @@ body { background:#000; color:#fff; margin:0; font-family:sans-serif; }
 a { color:#4da3ff; display:block; margin:6px 0; word-break:break-all; }
 .menu {
     position:fixed; bottom:0; left:0; width:100%;
-    background:#111; display:flex;
-    overflow-x:auto; white-space:nowrap;
+    background:#111; overflow-x:auto; white-space:nowrap;
 }
-.menu button {
-    flex:0 0 auto; padding:10px 12px;
-    background:#222; color:#fff;
-    border:none; margin:2px;
-    font-size:14px; border-radius:4px;
+.menu ul {
+    display:flex; list-style:none; margin:0; padding:4px;
 }
-.menu::-webkit-scrollbar { display:none; } /* sembunyikan scrollbar di mobile */
+.menu li {
+    flex:0 0 auto; margin:0 4px;
+}
+.menu a {
+    display:block; padding:8px 12px; background:#222; color:#fff;
+    text-decoration:none; border-radius:4px; font-size:14px;
+}
+.menu::-webkit-scrollbar { display:none; }
 </style>
 </head>
 <body>
@@ -39,15 +42,17 @@ a { color:#4da3ff; display:block; margin:6px 0; word-break:break-all; }
 
 <!-- Scrollable Menu -->
 <div class="menu">
-    <button>LOGIN JAM</button>
-    <button>DAILY LOGIN</button>
-    <button>DAILY SWAP</button>
-    <button>monad1</button>
-    <button>monad2</button>
-    <button>AIR</button>
-    <button>monad nft</button>
-    <button>brige</button>
-    <button>jarang</button>
+    <ul>
+        <li><a href="https://kingvavasav.github.io/menu/simpel#">LOGIN JAM</a></li>
+        <li><a href="https://kingvavasav.github.io/menu/simpel#">DAILY LOGIN</a></li>
+        <li><a href="https://kingvavasav.github.io/menu/simpel#">DAILY SWAP</a></li>
+        <li><a href="https://kingvavasav.github.io/menu/simpel#">monad1</a></li>
+        <li><a href="https://kingvavasav.github.io/menu/simpel#">monad2</a></li>
+        <li><a href="https://kingvavasav.github.io/menu/simpel#">AIR</a></li>
+        <li><a href="https://kingvavasav.github.io/menu/simpel#">monad nft</a></li>
+        <li><a href="https://kingvavasav.github.io/menu/simpel#">brige</a></li>
+        <li><a href="https://kingvavasav.github.io/menu/simpel#">jarang</a></li>
+    </ul>
 </div>
 
 </body>
