@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Link List</title>
+<style>
+body { background:#000; color:#fff; margin:0; font-family:sans-serif; }
+a { color:#4da3ff; display:block; margin:6px 0; word-break:break-all; }
+.menu {
+    position:fixed; bottom:0; left:0; width:100%;
+    background:#111; overflow-x:auto; white-space:nowrap;
+}
+.menu ul {
+    display:flex; list-style:none; margin:0; padding:4px;
+}
+.menu li {
+    flex:0 0 auto; margin:0 4px;
+}
+.menu a {
+    display:block; padding:8px 12px; background:#222; color:#fff;
+    text-decoration:none; border-radius:4px; font-size:14px;
+}
+.menu::-webkit-scrollbar { display:none; }
+</style>
+</head>
+<body>
+
+<!-- Link List -->
+<a href="https://discord.com/channels/1308368864505106442/1339883019556749395" target="_blank" rel="noopener noreferrer">https://discord.com/channels/1308368864505106442/1339883019556749395</a><br>
+<a href="https://www.r2.money/overview" target="_blank" rel="noopener noreferrer">https://www.r2.money/overview</a><br>
+<a href="https://devnet.t1protocol.com/bridge/" target="_blank" rel="noopener noreferrer">https://devnet.t1protocol.com/bridge/</a><br>
+<a href="https://testnet.incentiv.net/" target="_blank" rel="noopener noreferrer">https://testnet.incentiv.net/</a><br>
+<a href="https://dex.x.ink/swap" target="_blank" rel="noopener noreferrer">https://dex.x.ink/swap</a><br>
+<a href="https://byield.gonative.cc/" target="_blank" rel="noopener noreferrer">https://byield.gonative.cc/</a><br>
+<a href="https://dex.testnet.haust.app/" target="_blank" rel="noopener noreferrer">https://dex.testnet.haust.app/</a><br>
+<a href="https://portal.helioschain.network/delegations" target="_blank" rel="noopener noreferrer">https://portal.helioschain.network/delegations</a><br>
+<a href="https://testnet.helioschain.network/" target="_blank" rel="noopener noreferrer">https://testnet.helioschain.network/</a><br>
+<a href="https://testnet.somnia.network/" target="_blank" rel="noopener noreferrer">https://testnet.somnia.network/</a><br>
+<a href="https://testnet.pharosnetwork.xyz/experience/" target="_blank" rel="noopener noreferrer">https://testnet.pharosnetwork.xyz/experience/</a><br>
+<a href="https://testnet.zenithfinance.xyz/swap" target="_blank" rel="noopener noreferrer">https://testnet.zenithfinance.xyz/swap</a><br>
+<a href="https://wallet.tx.xyz/dashboard" target="_blank" rel="noopener noreferrer">https://wallet.tx.xyz/dashboard</a><br>
+<a href="https://testnet.sodex.com/portfolio" target="_blank" rel="noopener noreferrer">https://testnet.sodex.com/portfolio</a><br>
+
+
+<!-- Scrollable Menu -->
+<div class="menu">
+    <ul>
+        <li><a href="https://kingvavasav.github.io/menu/">LOGIN JAM</a></li>
+        <li><a href="https://kingvavasav.github.io/menu/dailylogin">DAILY LOGIN</a></li>
+        <li><a href="https://kingvavasav.github.io/menu/dailyswap">DAILY SWAP</a></li>
+        <li><a href="https://kingvavasav.github.io/menu/simpel#">monad1</a></li>
+        <li><a href="https://kingvavasav.github.io/menu/simpel#">monad2</a></li>
+        <li><a href="https://kingvavasav.github.io/menu/simpel#">AIR</a></li>
+        <li><a href="https://kingvavasav.github.io/menu/simpel#">monad nft</a></li>
+        <li><a href="https://kingvavasav.github.io/menu/simpel#">brige</a></li>
+        <li><a href="https://kingvavasav.github.io/menu/simpel#">jarang</a></li>
+    </ul>
+</div>
+
+</body>
+</html>
